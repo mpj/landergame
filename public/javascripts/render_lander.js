@@ -58,6 +58,14 @@
       ctx.fillRect(70, 10, 20, 20);
     }
 
+    if (lander && lander.crashed) {
+      ctx.fillStyle ="rgb(255, 0, 0)"; // red
+      ctx.font = "120px Helvetica";
+      ctx.textAlign = "left";
+      ctx.textBaseline = "top";
+      ctx.fillText("CRASHED", 50, 150, 750);
+    }
+
   })
 
 })();

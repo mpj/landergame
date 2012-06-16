@@ -28,7 +28,7 @@
 
   CanvasApplication.updaters.push(function(modifier) {
 
-    if (!CanvasApplication.lander)
+    if (!CanvasApplication.lander) {
       CanvasApplication.lander = {
         x: CanvasApplication.STAGE_WIDTH / 2 - CanvasApplication.LANDER_WIDTH / 2,
         y: 100,
@@ -36,12 +36,13 @@
         dx: 0,
         dy: 0
       }
-    
+    }
 
     lander = CanvasApplication.lander,
     keysDown = CanvasApplication.keysDown;
 
     if (!lander.landed) {
+
       if (37 in keysDown) { //  holding left arrow
         lander.angle = (lander.angle - 100 * modifier + 360) % 360;
       }
@@ -49,23 +50,45 @@
         lander.angle = (lander.angle + 100 * modifier + 360) % 360;
       }
 
-
       if (38 in keysDown) { //  holding up arrow
-        var dx = Math.cos((lander.angle / 180) * Math.PI);
-        var dy = Math.sin((lander.angle / 180) * Math.PI);
-        var thrust = 1;//(lander.angle / -90);
-        
-        lander.dx -= dx * 4 * modifier;
-        lander.dy -= dy * 4 * modifier;
+        lander.dx -= Math.cos((lander.angle / 180) * Math.PI) * 4 * modifier;
+        lander.dy -= Math.sin((lander.angle / 180) * Math.PI) * 4 * modifier;
       } else {
         lander.dx *= 0.99;
         lander.dy += 2 * modifier;
       }
-    }
 
+    }
 
     lander.x += lander.dx;
     lander.y += lander.dy;
+
+    if(lander.a) {
+      var seg0 = new Segment(new Vector(lander.a.x, lander.a.y), new Vector(lander.b.x, lander.b.y));
+      var seg1 = new Segment(new Vector(lander.b.x, lander.b.y), new Vector(lander.c.x, lander.c.y));
+      var seg2 = new Segment(new Vector(lander.c.x, lander.c.y), new Vector(lander.d.x, lander.d.y));
+      var seg3 = new Segment(new Vector(lander.d.x, lander.d.y), new Vector(lander.a.x, lander.a.y));
+
+      for(var i=1;i<CanvasApplication.surface.length;i++) {
+        var previous = CanvasApplication.surface[i-1];
+        var current = CanvasApplication.surface[i];
+        var p0 = new Vector(previous.x, previous.y);
+        var p1 = new Vector(current.x, current.y);
+        var seg = new Segment(p0, p1);
+        if(
+          intersect(seg, seg0) ||
+          intersect(seg, seg1) ||
+          intersect(seg, seg2) ||
+          intersect(seg, seg3)
+        ) {
+          if (!lander.landed) {
+            lander.dx = lander.dy = 0;
+            lander.landed = true;
+            lander.crashed = true;
+          }
+        }
+      }
+    }
 
     var h = Math.sqrt(Math.pow(CanvasApplication.LANDER_WIDTH / 2,2) + Math.pow(CanvasApplication.LANDER_HEIGHT / 2,2));
 
