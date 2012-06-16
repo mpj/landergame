@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+canvas#moon {
+    margin: 20px auto;
+    border: 3px solid rgb(121,60,60);
+}​
