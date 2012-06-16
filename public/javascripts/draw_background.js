@@ -16,8 +16,6 @@
       ctxBackground.lineTo(surface[i].x, surface[i].y);
   }
   
-  
-  
 	img.onload = function () {
 	  CanvasApplication.readyBackground = true;
 	  for (var i=0; i < Math.floor(CanvasApplication.STAGE_WIDTH/imgHeight) +1; i++){
