@@ -14,15 +14,22 @@
     lander = CanvasApplication.lander,
     keysDown = CanvasApplication.keysDown;
 
-    if (37 in keysDown) { // PlayerB holding left
+    if (37 in keysDown) { //  holding left arrow
       lander.angle -= 100 * modifier;
     }
-    if (39 in keysDown) { // PlayerB holding right
+    if (39 in keysDown) { //  holding right arrow
       lander.angle += 100 * modifier;
     }
 
+    if (38 in keysDown) { //  holding up arrow
+      
+      var thrust = (lander.angle / -90);
+      lander.x -= 100 * thrust * modifier;
 
-    lander.y += 35 * modifier;
+      lander.y -= 25 * modifier;
+    } else {
+      lander.y += 35 * modifier;
+    }
 
 
   })

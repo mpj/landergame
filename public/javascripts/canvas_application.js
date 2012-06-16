@@ -2,7 +2,7 @@ CanvasApplication = {
 	
 	readyBackground: false,
 
-	LANDER_WIDTH: 	30,
+	LANDER_WIDTH: 	20,
 	LANDER_HEIGHT: 	30,
 
 	STAGE_WIDTH: 	800,
