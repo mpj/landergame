@@ -1,7 +1,7 @@
 (function() {
 
 
-  CanvasApplication.updaters.push(function() {
+  CanvasApplication.updaters.push(function(modifier) {
 
     if (!CanvasApplication.lander)
       CanvasApplication.lander = {
@@ -11,6 +11,8 @@
     
 
     lander = CanvasApplication.lander;
+
+    lander.y += 35 * modifier;
 
 
   })
