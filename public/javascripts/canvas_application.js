@@ -12,6 +12,8 @@ CanvasApplication = {
 	updaters: [],
 	renderers: [],
 
+	goalsAchieved: {},
+
 	createCanvasContext: function() {
 		var canvas = document.createElement("canvas");
 		canvas.id = "moon";
@@ -30,22 +32,21 @@ CanvasApplication = {
 
 	CanvasApplication.surface = [
 		{x: 0,   y: baseline.y -12},
-    {x: 50,  y: baseline.y -130},
-    {x: 100, y: baseline.y -130},
-    {x: 150, y: baseline.y -42},
-    {x: 200, y: baseline.y -100},
-    {x: 250, y: baseline.y +43},
-    {x: 300, y: baseline.y +43},
-    {x: 350, y: baseline.y +43},
-    {x: 400, y: baseline.y -100},
-    {x: 450, y: baseline.y -10},
-    {x: 500, y: baseline.y -10},
-    {x: 550, y: baseline.y -130},
-    {x: 600, y: baseline.y -180},
-    {x: 650, y: baseline.y -122},
-    {x: 700, y: baseline.y -50},
-    {x: 750, y: baseline.y -50},    
-    {x: 800, y: baseline.y -12}
+	    {x: 50,  y: baseline.y -130},
+	    {x: 100, y: baseline.y -130},
+	    {x: 150, y: baseline.y -42},
+	    {x: 200, y: baseline.y -100},
+	    {x: 250, y: baseline.y +43},
+	    {x: 350, y: baseline.y +43},
+	    {x: 400, y: baseline.y -100},
+	    {x: 450, y: baseline.y -10},
+	    {x: 500, y: baseline.y -10},
+	    {x: 550, y: baseline.y -130},
+	    {x: 600, y: baseline.y -180},
+	    {x: 650, y: baseline.y -122},
+	    {x: 700, y: baseline.y -50},
+	    {x: 750, y: baseline.y -50},    
+	    {x: 800, y: baseline.y -12}
    ];
 })();
 
