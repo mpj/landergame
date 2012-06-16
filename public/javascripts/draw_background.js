@@ -7,14 +7,6 @@
 
 	img.src = '/images/background.gif';
 
-	img.onload = function () {
-	  CanvasApplication.readyBackground = true;
-	  for (var i=0; i < Math.floor(CanvasApplication.STAGE_WIDTH/imgHeight) +1; i++){
-	    for (var j=0; j < Math.floor(CanvasApplication.STAGE_WIDTH/imgWidth)+1; j++){
-	      ctxBackground.drawImage(img, j*imgWidth, i*imgHeight, imgWidth, imgHeight);
-	    }
-	  }
-	};
 
 	var surface = CanvasApplication.surface;
 
@@ -24,15 +16,27 @@
       ctxBackground.lineTo(surface[i].x, surface[i].y);
   }
   
-  ctxBackground.strokeStyle = "rgba(121,60,60)";  
-  ctxBackground.lineWidth = 3;
-  ctxBackground.stroke();
   
-  ctxBackground.lineTo(CanvasApplication.STAGE_WIDTH, CanvasApplication.STAGE_HEIGHT);
-  ctxBackground.lineTo(0, CanvasApplication.STAGE_HEIGHT);
-        
-  ctxBackground.fillStyle = "rgba(255,0,0,0.5)";  
+  
+	img.onload = function () {
+	  CanvasApplication.readyBackground = true;
+	  for (var i=0; i < Math.floor(CanvasApplication.STAGE_WIDTH/imgHeight) +1; i++){
+	    for (var j=0; j < Math.floor(CanvasApplication.STAGE_WIDTH/imgWidth)+1; j++){
+	      ctxBackground.drawImage(img, j*imgWidth, i*imgHeight, imgWidth, imgHeight);
 
-  ctxBackground.fill();  
+	    }
+	  }
+    
+  	//ctxBackground.strokeStyle = "rgba(121,60,60,1)";  
+  	//ctxBackground.lineWidth = 7;  
+    //ctxBackground.stroke();
+
+	  ctxBackground.lineTo(CanvasApplication.STAGE_WIDTH, CanvasApplication.STAGE_HEIGHT);
+	  ctxBackground.lineTo(0, CanvasApplication.STAGE_HEIGHT);
+	        
+	  ctxBackground.fillStyle = "rgba(255,64,64,1)";  
+		ctxBackground.fill();
+	};
+
 
 })();
