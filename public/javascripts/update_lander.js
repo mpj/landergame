@@ -41,25 +41,29 @@
     lander = CanvasApplication.lander,
     keysDown = CanvasApplication.keysDown;
 
-    if (37 in keysDown) { //  holding left arrow
-      lander.angle = (lander.angle - 100 * modifier + 360) % 360;
-    }
-    if (39 in keysDown) { //  holding right arrow
-      lander.angle = (lander.angle + 100 * modifier + 360) % 360;
+    if (!lander.landed) {
+      if (37 in keysDown) { //  holding left arrow
+        lander.angle = (lander.angle - 100 * modifier + 360) % 360;
+      }
+      if (39 in keysDown) { //  holding right arrow
+        lander.angle = (lander.angle + 100 * modifier + 360) % 360;
+      }
+
+
+      if (38 in keysDown) { //  holding up arrow
+        var dx = Math.cos((lander.angle / 180) * Math.PI);
+        var dy = Math.sin((lander.angle / 180) * Math.PI);
+        var thrust = 1;//(lander.angle / -90);
+        
+        lander.dx -= dx * 4 * modifier;
+        lander.dy -= dy * 4 * modifier;
+      } else {
+        lander.dx *= 0.99;
+        lander.dy += 2 * modifier;
+      }
     }
 
-    if (38 in keysDown) { //  holding up arrow
-      
-      var dx = Math.cos((lander.angle / 180) * Math.PI);
-      var dy = Math.sin((lander.angle / 180) * Math.PI);
-      var thrust = 1;//(lander.angle / -90);
-      
-      lander.dx -= dx * 4 * modifier;
-      lander.dy -= dy * 4 * modifier;
-    } else {
-      lander.dx *= 0.99;
-      lander.dy += 2 * modifier;
-    }
+
     lander.x += lander.dx;
     lander.y += lander.dy;
 
@@ -96,6 +100,15 @@
 
     for(var i=0;i<goals.length;i++) {
       CanvasApplication.goalsAchieved[i] = goals[i]();
+    }
+
+    if(CanvasApplication.goalsAchieved[0] &&
+       CanvasApplication.goalsAchieved[1] &&
+       CanvasApplication.goalsAchieved[2]) {
+      lander.landed = true;
+      lander.angle = 90;
+      lander.dx = 0;
+      lander.dy = 0;
     }
     
 
