@@ -2,7 +2,7 @@
 
   var goals = [
     function () {
-      return (CanvasApplication.lander.dy < 64.8);
+      return (CanvasApplication.lander.dy < .8);
     },
     
     function () {
