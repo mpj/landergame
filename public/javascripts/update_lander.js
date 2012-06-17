@@ -61,7 +61,6 @@
 
     lander.x += lander.dx;
     lander.y += lander.dy;
-console.log(CanvasApplication.lander.dy);
 
     if(lander.a) {
       var seg0 = new Segment(new Vector(lander.a.x, lander.a.y), new Vector(lander.b.x, lander.b.y));
@@ -93,13 +92,13 @@ console.log(CanvasApplication.lander.dy);
             if ( CanvasApplication.lander.c.x > p.x &&
                  CanvasApplication.lander.d.x < c.x) {
 
-              CanvasApplication.touchdown = !(intersect(seg, seg2) && 
+              CanvasApplication.lander.touchdown = !(intersect(seg, seg2) && 
                        CanvasApplication.lander.angle - 90 > ((ang / Math.PI) * 180) - 15 &&
                        CanvasApplication.lander.angle - 90 < ((ang / Math.PI) * 180) + 15);
             }
           }
 
-          if(CanvasApplication.touchdown) {
+          if(CanvasApplication.lander.touchdown) {
             if (!lander.landed) {
               lander.dx = lander.dy = 0;
               lander.landed = true;
