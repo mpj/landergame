@@ -6,7 +6,7 @@
     },
     
     function () {
-      return true;
+      return CanvasApplication.lander.touchdown;
     },
 
     function () {
@@ -84,7 +84,6 @@ console.log(CanvasApplication.lander.dy);
           intersect(seg, seg3)
         ) {
 
-          var died = true;
 
           for(var i=1;i<CanvasApplication.surface.length;i++) {
             var p = CanvasApplication.surface[i-1];
@@ -94,13 +93,13 @@ console.log(CanvasApplication.lander.dy);
             if ( CanvasApplication.lander.c.x > p.x &&
                  CanvasApplication.lander.d.x < c.x) {
 
-              died = !(intersect(seg, seg2) && 
+              CanvasApplication.touchdown = !(intersect(seg, seg2) && 
                        CanvasApplication.lander.angle - 90 > ((ang / Math.PI) * 180) - 15 &&
                        CanvasApplication.lander.angle - 90 < ((ang / Math.PI) * 180) + 15);
             }
           }
 
-          if(died) {
+          if(CanvasApplication.touchdown) {
             if (!lander.landed) {
               lander.dx = lander.dy = 0;
               lander.landed = true;

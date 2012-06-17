@@ -1,6 +1,7 @@
 CanvasApplication = {
 	
 	readyBackground: false,
+	touchdown: false;
 
 	LANDER_WIDTH: 	20,
 	LANDER_HEIGHT: 	30,
