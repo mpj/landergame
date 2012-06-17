@@ -2,12 +2,11 @@
 
   var goals = [
     function () {
-      return (CanvasApplication.lander.dy < 0.8);
+      return (CanvasApplication.lander.dy < 64.8);
     },
     
     function () {
-      return CanvasApplication.lander.angle > 85 &&
-             CanvasApplication.lander.angle < 95
+return true;
     },
 
     function () {
@@ -75,16 +74,39 @@
         var p0 = new Vector(previous.x, previous.y);
         var p1 = new Vector(current.x, current.y);
         var seg = new Segment(p0, p1);
+
+
         if(
           intersect(seg, seg0) ||
           intersect(seg, seg1) ||
           intersect(seg, seg2) ||
           intersect(seg, seg3)
         ) {
-          if (!lander.landed) {
+
+          var died = true;
+
+          for(var i=1;i<CanvasApplication.surface.length;i++) {
+            var p = CanvasApplication.surface[i-1];
+            var c = CanvasApplication.surface[i];
+            var hyp = Math.sqrt(Math.pow(p.y - c.y, 2) + Math.pow(p.x - c.x, 2));
+            var ang = Math.asin((c.y - p.y) / hyp);
+            if ( CanvasApplication.lander.c.x > p.x &&
+                 CanvasApplication.lander.d.x < c.x) {
+
+              died = !(intersect(seg, seg2) && CanvasApplication.lander.angle - 90 > ((ang / Math.PI) * 180) - 15 &&
+                       CanvasApplication.lander.angle -90 < ((ang / Math.PI) * 180) + 15);
+            }
+          }
+
+          if(died) {
+            if (!lander.landed) {
+              lander.dx = lander.dy = 0;
+              lander.landed = true;
+              lander.crashed = true;
+            }
+          } else {  
             lander.dx = lander.dy = 0;
             lander.landed = true;
-            lander.crashed = true;
           }
         }
       }

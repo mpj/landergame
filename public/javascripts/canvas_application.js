@@ -37,7 +37,7 @@ CanvasApplication = {
 	    {x: 150, y: baseline.y -42},
 	    {x: 200, y: baseline.y -100},
 	    {x: 250, y: baseline.y +43},
-	    {x: 350, y: baseline.y +43},
+	    {x: 350, y: baseline.y +53},
 	    {x: 400, y: baseline.y -100},
 	    {x: 450, y: baseline.y -10},
 	    {x: 500, y: baseline.y -10},
