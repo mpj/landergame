@@ -2,11 +2,11 @@
 
   var goals = [
     function () {
-      return (CanvasApplication.lander.dy < .8);
+      return (CanvasApplication.lander.dy < .08);
     },
     
     function () {
-return true;
+      return true;
     },
 
     function () {
@@ -61,6 +61,7 @@ return true;
 
     lander.x += lander.dx;
     lander.y += lander.dy;
+console.log(CanvasApplication.lander.dy);
 
     if(lander.a) {
       var seg0 = new Segment(new Vector(lander.a.x, lander.a.y), new Vector(lander.b.x, lander.b.y));
