@@ -94,8 +94,9 @@ console.log(CanvasApplication.lander.dy);
             if ( CanvasApplication.lander.c.x > p.x &&
                  CanvasApplication.lander.d.x < c.x) {
 
-              died = !(intersect(seg, seg2) && CanvasApplication.lander.angle - 90 > ((ang / Math.PI) * 180) - 15 &&
-                       CanvasApplication.lander.angle -90 < ((ang / Math.PI) * 180) + 15);
+              died = !(intersect(seg, seg2) && 
+                       CanvasApplication.lander.angle - 90 > ((ang / Math.PI) * 180) - 15 &&
+                       CanvasApplication.lander.angle - 90 < ((ang / Math.PI) * 180) + 15);
             }
           }
 
