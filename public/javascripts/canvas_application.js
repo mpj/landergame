@@ -13,6 +13,8 @@ CanvasApplication = {
 	updaters: [],
 	renderers: [],
 
+	sec: [-1, new Date().getSeconds()],
+	
 	goalsAchieved: {},
 
 	createCanvasContext: function() {

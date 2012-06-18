@@ -2,7 +2,7 @@
 
   var goals = [
     function () {
-      return (CanvasApplication.lander.dy < .08);
+      return (CanvasApplication.lander.dy < 0.5);
     },
     
     function () {
@@ -61,6 +61,13 @@
 
     lander.x += lander.dx;
     lander.y += lander.dy;
+    
+    // debug
+    if (CanvasApplication.sec[0] !== Math.floor(new Date().getMilliseconds()/100)) {
+      CanvasApplication.sec = [CanvasApplication.sec[1], Math.floor(new Date().getMilliseconds()/100)];
+      console.log(Math.floor(lander.dy * 100)/100);
+    }
+      
 
     if(lander.a) {
       var seg0 = new Segment(new Vector(lander.a.x, lander.a.y), new Vector(lander.b.x, lander.b.y));
@@ -89,25 +96,25 @@
             var c = CanvasApplication.surface[i];
             var hyp = Math.sqrt(Math.pow(p.y - c.y, 2) + Math.pow(p.x - c.x, 2));
             var ang = Math.asin((c.y - p.y) / hyp);
-            if ( CanvasApplication.lander.c.x > p.x &&
-                 CanvasApplication.lander.d.x < c.x) {
+            if ( lander.c.x > p.x &&
+                 lander.d.x < c.x) {
 
-              CanvasApplication.lander.touchdown = !(intersect(seg, seg2) && 
-                       CanvasApplication.lander.angle - 90 > ((ang / Math.PI) * 180) - 15 &&
-                       CanvasApplication.lander.angle - 90 < ((ang / Math.PI) * 180) + 15);
-            }
+              //lander.landed = !(intersect(seg, seg2) && 
+              lander.touchdown = !(intersect(seg, seg2) &&               
+                                   lander.angle - 90 > ((ang / Math.PI) * 180) - 15 &&
+                                   lander.angle - 90 < ((ang / Math.PI) * 180) + 15);
+            } 
           }
-
-          if(CanvasApplication.lander.touchdown) {
-            if (!lander.landed) {
-              lander.dx = lander.dy = 0;
-              lander.landed = true;
-              lander.crashed = true;
-            }
-          } else {  
+          if (!lander.touchdown) {
             lander.dx = lander.dy = 0;
             lander.landed = true;
+          } else {
+
+            lander.dx = lander.dy = 0;
+            lander.landed = true;
+            lander.crashed = true;
           }
+
         }
       }
     }
@@ -154,7 +161,7 @@
       lander.angle = 90;
       lander.dx = 0;
       lander.dy = 0;
-    }
+    } 
     
 
 
