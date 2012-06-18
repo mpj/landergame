@@ -62,12 +62,13 @@
     lander.x += lander.dx;
     lander.y += lander.dy;
     
+    /*
     // debug
     if (CanvasApplication.sec[0] !== Math.floor(new Date().getMilliseconds()/100)) {
       CanvasApplication.sec = [CanvasApplication.sec[1], Math.floor(new Date().getMilliseconds()/100)];
       console.log(Math.floor(lander.dy * 100)/100);
     }
-      
+    */
 
     if(lander.a) {
       var seg0 = new Segment(new Vector(lander.a.x, lander.a.y), new Vector(lander.b.x, lander.b.y));
