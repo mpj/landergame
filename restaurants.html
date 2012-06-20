@@ -1,0 +1,18 @@
+<head>
+  <title>restaurants</title>
+</head>
+
+<body>
+  {{> main}}
+</body>
+
+<template name="main">
+  <h1>Restaurants</h1>
+  {{#each restaurants}}
+  	<div class='restaurant'>{{name}} ({{votes}})</div>
+  {{/each}}
+
+  <input type="text" id="new_text" />
+  <input type="button" id="new_button" value="add" />
+
+</template>
